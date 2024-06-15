@@ -1,5 +1,4 @@
 // components/ui/SideBar.tsx
-
 "use client"
 import * as React from "react";
 import { cn } from "../../lib/utils";
@@ -20,19 +19,19 @@ interface SidebarItemProps {
   href: string;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ className, children, href }) => (
-  <Link href={href} className={cn("block py-2 px-4 rounded hover:bg-gray-700", className)}>
-    {children}
-  </Link>
-);
-
 export const Sidebar: React.FC<SidebarProps> = ({ className, role }) => {
-  const { role: userRole, handleLogout } = useKeyContext(); // Use handleLogout from context
+  const { role: userRole, setJwt, setRole, setSharedKey, setServerPublicKey } = useKeyContext(); // Add necessary context setters
   const router = useRouter(); // Initialize router
 
-  const handleLogoutClick = () => {
-    handleLogout(); // Clear context values and localStorage
-    router.push("/"); // Redirect to login page
+  const handleLogout = () => {
+    // Clear context values
+    setJwt(null);
+    setRole(null);
+    setSharedKey(null);
+    setServerPublicKey(null);
+
+    // Redirect to login page
+    router.push("/");
   };
 
   return (
@@ -49,12 +48,30 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, role }) => {
         <SidebarItem href="/Dashboard/payment-customer-to-merchant">Customer to Merchant</SidebarItem>
         <SidebarItem href="/Dashboard/payment-merchant-to-merchant">Merchant to Merchant</SidebarItem>
         <SidebarItem href="/Dashboard/total-transactions">Total Transactions</SidebarItem>
-      </div>
-      <div className="p-4 mt-auto">
-        <Button onClick={handleLogoutClick} className="w-full flex items-center justify-center">
-          <FaSignOutAlt className="mr-2" /> Logout
-        </Button>
+
+        {userRole === "Admin" && ( // Conditionally render the tab based on the role
+          <SidebarItem href="/Dashboard/signup">New Dashboard Employee</SidebarItem>
+        )}
+        <div className="mt-4 pt-4 border-t border-gray-700">
+        <SidebarItem href="#">Pending Invoices[Depreciated]</SidebarItem>
+        <SidebarItem href="#">Card Status[Depreciated]</SidebarItem>
+        </div>
+        <div className="mt-4 pt-4 border-t border-gray-700">
+          <Button className="w-full justify-start" variant="ghost" onClick={handleLogout}>
+            <FaSignOutAlt className="mr-2" /> Logout
+          </Button>
+        </div>
       </div>
     </div>
+  );
+};
+
+export const SidebarItem: React.FC<SidebarItemProps> = ({ className, children, href }) => {
+  return (
+    <Link href={href}>
+      <Button className={cn("text-l w-full text-left", className)} variant="ghost">
+        <span className="text-left w-full">{children}</span>
+      </Button>
+    </Link>
   );
 };
