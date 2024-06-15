@@ -20,7 +20,7 @@ const LoginPage = () => {
   const [loading, setLoading] = React.useState(false)
   const router = useRouter()
   const { open, message, setOpen, showToast } = useToast()
-  const { sharedKey, jwt, setServerPublicKey, setSharedKey, setJwt, setRole } = useKeyContext() // Add setRole
+  const { sharedKey, setServerPublicKey, setSharedKey, handleLogin, setRole, jwt } = useKeyContext() // Add jwt
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -76,7 +76,7 @@ const LoginPage = () => {
           const decryptedData = await decryption(await response.json(), sharedKey);
           const parsedData = JSON.parse(decryptedData);
           const { jwt } = parsedData;
-          setJwt(jwt);
+          handleLogin(jwt);
 
           // Decode the JWT token to extract the role
           const decodedToken: any = jwtDecode(jwt);
