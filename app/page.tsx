@@ -48,6 +48,9 @@ const LoginPage = () => {
       const derivedSharedKey = await genShared(serverPublicKey);
       setSharedKey(derivedSharedKey);
 
+      // Store shared key in localStorage
+      localStorage.setItem('sharedKey', derivedSharedKey);
+
       setStep(2);
     } catch (error) {
       console.error('Error during key exchange:', error);
@@ -77,6 +80,9 @@ const LoginPage = () => {
           const parsedData = JSON.parse(decryptedData);
           const { jwt } = parsedData;
           setJwt(jwt);
+
+          // Store JWT in localStorage
+          localStorage.setItem('jwt', jwt);
 
           // Decode the JWT token to extract the role
           const decodedToken: any = jwtDecode(jwt);

@@ -57,7 +57,6 @@ const UserTopup = () => {
   useEffect(() => {
     const fetchTopupData = async () => {
       if (!jwt || !sharedKey) {
-        alert("JWT token or shared key is missing");
         return;
       }
 
@@ -147,7 +146,6 @@ const UserTopup = () => {
 
   const handleAddBalance = async () => {
     if (!jwt || !sharedKey) {
-      alert("JWT token or shared key is missing");
       return;
     }
 
@@ -339,7 +337,6 @@ export const LatestVendorTopup: React.FC = () => {
   useEffect(() => {
     const fetchLatestTopupData = async () => {
       if (!jwt || !sharedKey) {
-        alert("JWT token or shared key is missing");
         return;
       }
 
