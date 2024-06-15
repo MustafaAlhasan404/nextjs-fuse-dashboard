@@ -90,6 +90,11 @@ const LoginPage = () => {
           console.log("Decoded role:", role); // Debug: Print the extracted role
           setRole(role); // Save the role in context
 
+          // Set a timeout to log out the user after 30 minutes
+          setTimeout(() => {
+            handleLogout();
+          }, 30 * 60 * 1000); // 30 minutes in milliseconds
+
           router.push("/Dashboard/home");
         } else {
           const errorData = await response.json();
@@ -106,6 +111,14 @@ const LoginPage = () => {
       setLoading(false)
     }
   }
+
+  const handleLogout = () => {
+    setJwt(null);
+    setRole(null);
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('sharedKey');
+    router.push("/"); // Redirect to login page
+  };
 
   return (
     <ToastProvider>

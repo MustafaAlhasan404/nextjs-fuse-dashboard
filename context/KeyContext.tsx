@@ -1,9 +1,8 @@
-// context/KeyContext.tsx
-
 "use client"
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import {jwtDecode} from 'jwt-decode';
+import { useRouter } from 'next/navigation'; // Import useRouter
 
 interface KeyContextType {
   publicKey: string | null;
@@ -44,6 +43,17 @@ export const KeyProvider = ({ children }: { children: ReactNode }) => {
   const [sharedKey, setSharedKey] = useState<string | null>(null);
   const [jwt, setJwt] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
+  const router = useRouter(); // Initialize router
+
+  const handleLogout = useCallback(() => {
+    setJwt(null);
+    setRole(null);
+    setSharedKey(null);
+    setServerPublicKey(null);
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('sharedKey');
+    router.push("/"); // Redirect to login page
+  }, [router]);
 
   useEffect(() => {
     const storedJwt = localStorage.getItem('jwt');
@@ -56,7 +66,20 @@ export const KeyProvider = ({ children }: { children: ReactNode }) => {
     if (storedSharedKey) {
       setSharedKey(storedSharedKey);
     }
-  }, []);
+
+    const checkSession = () => {
+      if (storedJwt) {
+        const decodedToken: any = jwtDecode(storedJwt);
+        const currentTime = Date.now() / 1000;
+        if (decodedToken.exp < currentTime) {
+          handleLogout();
+        }
+      }
+    };
+
+    const interval = setInterval(checkSession, 1 * 60 * 1000); // Check every 5 minutes
+    return () => clearInterval(interval);
+  }, [handleLogout]);
 
   return (
     <KeyContext.Provider
