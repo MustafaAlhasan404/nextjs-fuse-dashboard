@@ -58,10 +58,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ className, role }) => {
           <SidebarItem href="/Dashboard/signup">New Dashboard Employee</SidebarItem>
         )}
         <div className="mt-4 pt-4 border-t border-gray-700">
-          <SidebarItem href="#">Pending Invoices[Depreciated]</SidebarItem>
-          <SidebarItem href="#">Card Status[Depreciated]</SidebarItem>
-        </div>
-        <div className="mt-4 pt-4 border-t border-gray-700">
           <Button className="w-full justify-start" variant="ghost" onClick={handleLogout}>
             <FaSignOutAlt className="mr-2" /> Logout
           </Button>
