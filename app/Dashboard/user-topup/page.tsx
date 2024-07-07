@@ -141,14 +141,14 @@ const UserTopup = () => {
     requestSort(value);
   };
 
-  const handleAddBalance = async () => {
+const handleAddBalance = async () => {
     if (!jwt || !sharedKey) {
-      return;
+        return;
     }
 
     const payload = {
-      account: parseInt(destinationAccount, 10),
-      amount: parseFloat(amount),
+        account: destinationAccount, // Ensure this is a string
+        amount: parseFloat(amount),
     };
 
     const encryptedPayload = await encryption({ data: payload }, sharedKey);
@@ -156,21 +156,22 @@ const UserTopup = () => {
     console.log("Making request to /transaction/cash/deposit with payload:", { jwt, payload: encryptedPayload });
 
     const response = await fetch("https://fuse-backend-x7mr.onrender.com/transaction/cash/deposit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}`,
-      },
-      body: JSON.stringify({ jwt, payload: encryptedPayload }),
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwt}`,
+        },
+        body: JSON.stringify({ jwt, payload: encryptedPayload }),
     });
 
     if (response.ok) {
-      alert("Balance added successfully");
-      setShowPopup(false);
+        alert("Balance added successfully");
+        setShowPopup(false);
     } else {
-      alert("Failed to add balance");
+        alert("Failed to add balance");
     }
-  };
+};
+
 
   return (
     <TooltipProvider>
