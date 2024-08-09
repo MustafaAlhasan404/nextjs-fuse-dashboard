@@ -43,7 +43,7 @@ const SignupPage = () => {
         const employeeData = { name, email, phone, birth, password, rPassword }
         const encryptedPayload = await encryption({ data: employeeData }, sharedKey) // Encrypt the employee data
 
-        const response = await fetch("https://fuse-backend-x7mr.onrender.com/auth/register/employee", {
+        const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/auth/register/employee", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -50,7 +50,7 @@ const CustomerToCustomer = () => {
 
           // console.log("Making request to /transaction/fromTo with payload:", { jwt, payload: encryptedPayload });
 
-          const response = await fetch("https://fuse-backend-x7mr.onrender.com/transaction/fromTo", {
+          const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/transaction/fromTo", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -280,7 +280,7 @@ export const LatestCustomerToCustomer: React.FC = () => {
 
           // console.log("Making request to /transaction/fromTo with payload:", { jwt, payload: encryptedPayload });
 
-          const response = await fetch("https://fuse-backend-x7mr.onrender.com/transaction/fromTo", {
+          const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/transaction/fromTo", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
