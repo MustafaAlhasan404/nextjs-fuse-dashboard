@@ -1,5 +1,5 @@
 ### Login
-POST https://3030-quiet-sunset-73461303.in-ws1.runcode.io/auth/login
+POST https://f-u-s-e.onrender.com/auth/login
 Content-Type: application/json
 
 {
@@ -10,4 +10,4 @@ Content-Type: application/json
 }
 
 ### Get Card Data
-GET https://3030-quiet-sunset-73461303.in-ws1.runcode.io/card
+GET https://f-u-s-e.onrender.com/card

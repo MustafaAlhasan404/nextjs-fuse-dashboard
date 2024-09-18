@@ -28,7 +28,7 @@ const LoginPage = () => {
     try {
       const clientPublicKey = await genPublic();
 
-      const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/key/dashboard/generate", {
+      const response = await fetch("https://f-u-s-e.onrender.com/key/dashboard/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +67,7 @@ const LoginPage = () => {
       if (sharedKey) {
         const encryptedPayload = await encryption({ data: { email, password } }, sharedKey);
 
-        const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/auth/dashboard/login", {
+        const response = await fetch("https://f-u-s-e.onrender.com/auth/dashboard/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

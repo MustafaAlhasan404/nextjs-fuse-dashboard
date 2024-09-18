@@ -57,7 +57,7 @@ const UserTopup = () => {
         return;
       }
 
-      const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/transaction/topUp", {
+      const response = await fetch("https://f-u-s-e.onrender.com/transaction/topUp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -155,7 +155,7 @@ const handleAddBalance = async () => {
 
     console.log("Making request to /transaction/cash/deposit with payload:", { jwt, payload: encryptedPayload });
 
-    const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/transaction/cash/deposit", {
+    const response = await fetch("https://f-u-s-e.onrender.com/transaction/cash/deposit", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -331,7 +331,7 @@ export const LatestVendorTopup: React.FC = () => {
         return;
       }
 
-      const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/transaction/topUp", {
+      const response = await fetch("https://f-u-s-e.onrender.com/transaction/topUp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -46,7 +46,7 @@ const TotalTransactions = () => {
     const fetchData = async () => {
       if (sharedKey && jwt) {
         try {
-          const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/transaction/all", {
+          const response = await fetch("https://f-u-s-e.onrender.com/transaction/all", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -267,7 +267,7 @@ export const LatestTotalTransactions: React.FC = () => {
     const fetchData = async () => {
       if (sharedKey && jwt) {
         try {
-          const response = await fetch("https://3030-quiet-sunset-73461303.in-ws1.runcode.io/transaction/all", {
+          const response = await fetch("https://f-u-s-e.onrender.com/transaction/all", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
